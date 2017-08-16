@@ -9,9 +9,9 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) throws IOException{
-    	final  int ELITISM_K = 3;
+    	final  int ELITISM_K = 5;
         final  int POP_SIZE = 40 + ELITISM_K;  // population size
-        final  int MAX_ITER = 40;             // max number of iterations
+        final  int MAX_ITER = 20;             // max number of iterations
         final  double MUTATION_RATE = 0.05;     // probability of mutation
         final  double CROSSOVER_RATE = 0.7;     // probability of crossover
         

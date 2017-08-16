@@ -9,7 +9,7 @@ import pacman.game.Constants.MOVE;
 import pacman.game.Constants;
 import pacman.game.Game;
 
-//import entrants.pacman.josh24311.Test;
+
 
 /*
  * This is the class you need to modify for your entry. In particular, you need to
@@ -278,7 +278,7 @@ public class MyPacMan extends PacmanController
         int minDistance = Integer.MAX_VALUE;
         int minDistanceGh = Integer.MAX_VALUE;
         int minDistanceEdGh = Integer.MAX_VALUE;
-        int closestPp;
+        int closestPp = 0;
         int closestP = 0;
 
         int disTonearestPp = 0;
@@ -304,10 +304,20 @@ public class MyPacMan extends PacmanController
         int D13 = 100;
         */
         int D[] = new int[ParameterCount];
-        
-        int mapNow = 0;
+		
         boolean ambush_stat = false ;
-
+        int mapNow = 0;
+        //0816 cut
+        //boolean ambush_stat = false ;
+        //0816 new
+        /*
+        int ambush_stat = 0 ;
+        int[] nextMove = new int[5];
+        int heavy = 0;
+        int lastP = 0;
+        boolean hide = false;
+        boolean pAva = false;*/
+        
         /* D13 經過Randomd13.java產生的隨機Int */
         /*
          * Randomd13 dis = new Randomd13(); int D13 = dis.rand13;
@@ -442,245 +452,248 @@ public class MyPacMan extends PacmanController
             int[] targetsArray = new int[targets.size()]; // convert from
             // ArrayList to
             // array
-
             for (int i = 0; i < targetsArray.length; i++)
             {
                 targetsArray[i] = targets.get(i);
             }
-
             closestPp = game.getClosestNodeIndexFromNodeIndex(current, targetsArray, Constants.DM.PATH);
-            disTonearestPp = game.getShortestPathDistance(current, closestPp);
-           // game.getCurrentMaze().shortestPathDistances
-            //System.out.println(game.getNextMoveTowardsTarget(948, 12, Constants.DM.PATH));
-            
-            //判斷式開始=====================================================================
+            disTonearestPp = game.getShortestPathDistance(current, closestPp);   
+			//判斷式開始=====================================================================
             // 有可食鬼存在
             if(minEdGhost!=null)
             {
-            	if(minDistanceEdGh<D[12])
-            	{
-            		//System.out.println("Situation 1 : Go hunting");
-            		return game.getNextMoveTowardsTarget(current, game.getGhostCurrentNodeIndex(minEdGhost), Constants.DM.PATH);
-            	}
-            	else if(minDistanceEdGh>D[12]&&minDistanceGh>D[1] &&minDistanceGh<=D[2]&&disTonearestP<=D[6])
-            	{
-            		//System.out.println("Situation 9 : Avoid danger eat n_p first");
-            		return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
-            	}
-            	
+                if(minDistanceEdGh<D[12])
+                {
+                    //System.out.println("Situation 1 : Go hunting");
+                    return game.getNextMoveTowardsTarget(current, game.getGhostCurrentNodeIndex(minEdGhost), Constants.DM.PATH);
+                }
+                if(minGhost!=null)
+                {
+                    if(minDistanceEdGh>D[12]&&minDistanceGh>D[1] &&minDistanceGh<=D[2]&&disTonearestP<=D[9])
+                    {
+                        //System.out.println("Situation 9 : Avoid danger eat n_p first");
+                        return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
+                    }
+                }
             }
             else //可食鬼不存在
             {
                 if(minDistanceGh>=D[1] && minDistanceGh <=D[2] && disTonearestPp >=D[5] && disTonearestPp <=D[6])
                 {
-                	if(mapNow ==0)
-                	{
-                		//System.out.print("a");
-                		if(current==1149||current==1095||current==1125||current==1155||current==1142||current==1136||current==1154||current==1160||current==91||current==85||current==103||current==109||current==96||current==90||current==108||current==114)
+                    if(mapNow ==0)
+                    {
+                        //System.out.print("a");
+                        if(current==1149||current==1095||current==1125||current==1155||current==1142||current==1136||current==1154||current==1160||current==91||current==85||current==103||current==109||current==96||current==90||current==108||current==114)
                         {
                             ambush_stat = true;
                             //System.out.println("Ambush NOW");
                         }
-                	}
-                	else if(mapNow ==1)
-                	{
-                		if(current==132||current==133||current==221||current==227||current==219||current==218||current==226||current==232||current==1084||current==1085||current==1151||current==1157||current==1149||current==1148||current==1156||current==1162)
+                    }
+                    else if(mapNow ==1)
+                    {
+                        if(current==132||current==133||current==221||current==227||current==219||current==218||current==226||current==232||current==1084||current==1085||current==1151||current==1157||current==1149||current==1148||current==1156||current==1162)
                         {
                             ambush_stat = true;
                             //System.out.println("Ambush NOW");
                         }
-                	}
-                	else if(mapNow ==2)
-                	{
-                		if(current==115||current==109||current==127||current==133||current==114||current==120||current==132||current==138||current==1022||current==1023||current==1100||current==1106||current==1098||current==1097||current==1105||current==1111)
+                    }
+                    else if(mapNow ==2)
+                    {
+                        if(current==115||current==109||current==127||current==133||current==114||current==120||current==132||current==138||current==1022||current==1023||current==1100||current==1106||current==1098||current==1097||current==1105||current==1111)
                         {
                             ambush_stat = true;
                             //System.out.println("Ambush NOW");
                         }
-                	}
-                	else if(mapNow ==3)
-                	{
-                		if(current==137||current==131||current==149||current==155||current==142||current==136||current==154||current==160||current==1164||current==1158||current==1176||current==1182||current==1169||current==1163||current==1181||current==1187)
+                    }
+                    else if(mapNow ==3)
+                    {
+                        if(current==137||current==131||current==149||current==155||current==142||current==136||current==154||current==160||current==1164||current==1158||current==1176||current==1182||current==1169||current==1163||current==1181||current==1187)
                         {
                             ambush_stat = true;
                             //System.out.println("Ambush NOW");
                         }
-                	}
+                    }
                     //預備埋伏區間，察覺有危險
-                	//System.out.println("Coming Ghost: " + minGhost);
-                    
-                    if(ambush_stat) //在ambush狀態下
+                    //System.out.println("Coming Ghost: " + minGhost);
+
+                    if(ambush_stat) //在hide狀態下
                     {
                         if(minDistanceGh<=D[0])
                         {
+                            //r3 hide狀態且鬼追來
                             //鬼太接近
                             ambush_stat = false;
                             //System.out.println("Situation 3 : Too Close Eat PP");
                             //eat pp
                             return game.getNextMoveTowardsTarget(current, closestPp, Constants.DM.PATH);
                         }
-                        else if(minDistanceGh >=D[1])
+						
+                        if(minDistanceGh >=D[1])
                         {
-                        	//這裡要修正
+                            //r4 hide狀態且鬼遠離
+                            //這裡要修正
                             //鬼漸漸遠離
                             ambush_stat = false;
                             //System.out.println("Situation 4 : Ghost GO Away Eat nearest p");
                             //eat n_p
                             return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
                         }
-                        else
+
+                        //撞牆實作
+                        if(mapNow ==0) //MAZE_A
                         {
-                        	//撞牆實作
-                        	if(mapNow ==0) //MAZE_A
-                        	{
-                        		switch(current){
-                        		case 85:
-                        			return MOVE.UP;
-                        		case 91:
-                        			return MOVE.UP;
-                        		case 103:
-                        			return MOVE.DOWN;
-                        		case 109:
-                        			return MOVE.DOWN;
-                        		case 96:
-                        			return MOVE.UP;
-                        		case 90:
-                        			return MOVE.UP;
-                        		case 108:
-                        			return MOVE.DOWN;
-                        		case 114:
-                        			return MOVE.DOWN;
-                        		case 1095:
-                        			return MOVE.UP;
-                        		case 1125:
-                        			return MOVE.UP;
-                        		case 1149:
-                        			return MOVE.DOWN;
-                        		case 1155:
-                        			return MOVE.DOWN;
-                        		case 1142:
-                        			return MOVE.UP;
-                        		case 1136:
-                        			return MOVE.UP;
-                        		case 1154:
-                        			return MOVE.DOWN;
-                        		case 1160:
-                        			return MOVE.DOWN;
-                        		}
-                        	}
-                        	else if(mapNow ==1)
-                        	{
-                        		switch(current){
-                        		case 132:
-                        			return MOVE.RIGHT;
-                        		case 133:
-                        			return MOVE.RIGHT;
-                        		case 221:
-                        			return MOVE.DOWN;
-                        		case 227:
-                        			return MOVE.DOWN;
-                        		case 218:
-                        			return MOVE.LEFT;
-                        		case 219:
-                        			return MOVE.LEFT;
-                        		case 226:
-                        			return MOVE.DOWN;
-                        		case 232:
-                        			return MOVE.DOWN;
-                        		case 1084:
-                        			return MOVE.RIGHT;
-                        		case 1085:
-                        			return MOVE.RIGHT;
-                        		case 1151:
-                        			return MOVE.DOWN;
-                        		case 1157:
-                        			return MOVE.DOWN;
-                        		case 1148:
-                        			return MOVE.LEFT;
-                        		case 1149:
-                        			return MOVE.LEFT;
-                        		case 1156:
-                        			return MOVE.DOWN;
-                        		case 1162:
-                        			return MOVE.DOWN;
-                        		}
-                        	}
-                        	else if(mapNow ==2)
-                        	{
-                        		switch(current){
-                        		case 109:
-                        			return MOVE.UP;
-                        		case 115:
-                        			return MOVE.UP;
-                        		case 127:
-                        			return MOVE.DOWN;
-                        		case 133:
-                        			return MOVE.DOWN;
-                        		case 114:
-                        			return MOVE.UP;
-                        		case 120:
-                        			return MOVE.UP;
-                        		case 132:
-                        			return MOVE.DOWN;
-                        		case 138:
-                        			return MOVE.DOWN;
-                        		case 1022:
-                        			return MOVE.RIGHT;
-                        		case 1023:
-                        			return MOVE.RIGHT;
-                        		case 1100:
-                        			return MOVE.DOWN;
-                        		case 1106:
-                        			return MOVE.DOWN;
-                        		case 1097:
-                        			return MOVE.LEFT;
-                        		case 1098:
-                        			return MOVE.LEFT;
-                        		case 1105:
-                        			return MOVE.DOWN;
-                        		case 1111:
-                        			return MOVE.DOWN;
-                        		}
-                        	}
-                        	else
-                        	{
-                        		switch(current){
-                        		case 131:
-                        			return MOVE.UP;
-                        		case 137:
-                        			return MOVE.UP;
-                        		case 149:
-                        			return MOVE.DOWN;
-                        		case 155:
-                        			return MOVE.DOWN;
-                        		case 136:
-                        			return MOVE.UP;
-                        		case 142:
-                        			return MOVE.UP;
-                        		case 154:
-                        			return MOVE.DOWN;
-                        		case 160:
-                        			return MOVE.DOWN;
-                        		case 1158:
-                        			return MOVE.UP;
-                        		case 1164:
-                        			return MOVE.UP;
-                        		case 1176:
-                        			return MOVE.DOWN;
-                        		case 1182:
-                        			return MOVE.DOWN;
-                        		case 1163:
-                        			return MOVE.UP;
-                        		case 1169:
-                        			return MOVE.UP;
-                        		case 1181:
-                        			return MOVE.DOWN;
-                        		case 1187:
-                        			return MOVE.DOWN;
-                        		}
-                        	}
-                        	//System.out.println("Ambush~~~");
+                            switch(current)
+                            {
+                            case 85:
+                                return MOVE.UP;
+                            case 91:
+                                return MOVE.UP;
+                            case 103:
+                                return MOVE.DOWN;
+                            case 109:
+                                return MOVE.DOWN;
+                            case 96:
+                                return MOVE.UP;
+                            case 90:
+                                return MOVE.UP;
+                            case 108:
+                                return MOVE.DOWN;
+                            case 114:
+                                return MOVE.DOWN;
+                            case 1095:
+                                return MOVE.UP;
+                            case 1125:
+                                return MOVE.UP;
+                            case 1149:
+                                return MOVE.DOWN;
+                            case 1155:
+                                return MOVE.DOWN;
+                            case 1142:
+                                return MOVE.UP;
+                            case 1136:
+                                return MOVE.UP;
+                            case 1154:
+                                return MOVE.DOWN;
+                            case 1160:
+                                return MOVE.DOWN;
+                            }
                         }
+                        else if(mapNow ==1)
+                        {
+                            switch(current)
+                            {
+                            case 132:
+                                return MOVE.RIGHT;
+                            case 133:
+                                return MOVE.RIGHT;
+                            case 221:
+                                return MOVE.DOWN;
+                            case 227:
+                                return MOVE.DOWN;
+                            case 218:
+                                return MOVE.LEFT;
+                            case 219:
+                                return MOVE.LEFT;
+                            case 226:
+                                return MOVE.DOWN;
+                            case 232:
+                                return MOVE.DOWN;
+                            case 1084:
+                                return MOVE.RIGHT;
+                            case 1085:
+                                return MOVE.RIGHT;
+                            case 1151:
+                                return MOVE.DOWN;
+                            case 1157:
+                                return MOVE.DOWN;
+                            case 1148:
+                                return MOVE.LEFT;
+                            case 1149:
+                                return MOVE.LEFT;
+                            case 1156:
+                                return MOVE.DOWN;
+                            case 1162:
+                                return MOVE.DOWN;
+                            }
+                        }
+                        else if(mapNow ==2)
+                        {
+                            switch(current)
+                            {
+                            case 109:
+                                return MOVE.UP;
+                            case 115:
+                                return MOVE.UP;
+                            case 127:
+                                return MOVE.DOWN;
+                            case 133:
+                                return MOVE.DOWN;
+                            case 114:
+                                return MOVE.UP;
+                            case 120:
+                                return MOVE.UP;
+                            case 132:
+                                return MOVE.DOWN;
+                            case 138:
+                                return MOVE.DOWN;
+                            case 1022:
+                                return MOVE.RIGHT;
+                            case 1023:
+                                return MOVE.RIGHT;
+                            case 1100:
+                                return MOVE.DOWN;
+                            case 1106:
+                                return MOVE.DOWN;
+                            case 1097:
+                                return MOVE.LEFT;
+                            case 1098:
+                                return MOVE.LEFT;
+                            case 1105:
+                                return MOVE.DOWN;
+                            case 1111:
+                                return MOVE.DOWN;
+                            }
+                        }
+                        else if(mapNow ==3)
+                        {
+                            switch(current)
+                            {
+                            case 131:
+                                return MOVE.UP;
+                            case 137:
+                                return MOVE.UP;
+                            case 149:
+                                return MOVE.DOWN;
+                            case 155:
+                                return MOVE.DOWN;
+                            case 136:
+                                return MOVE.UP;
+                            case 142:
+                                return MOVE.UP;
+                            case 154:
+                                return MOVE.DOWN;
+                            case 160:
+                                return MOVE.DOWN;
+                            case 1158:
+                                return MOVE.UP;
+                            case 1164:
+                                return MOVE.UP;
+                            case 1176:
+                                return MOVE.DOWN;
+                            case 1182:
+                                return MOVE.DOWN;
+                            case 1163:
+                                return MOVE.UP;
+                            case 1169:
+                                return MOVE.UP;
+                            case 1181:
+                                return MOVE.DOWN;
+                            case 1187:
+                                return MOVE.DOWN;
+                            }
+                        }
+                        //System.out.println("Ambush~~~");
+
                     }
                     else //非ambush狀態但察覺有危險
                     {
@@ -722,87 +735,110 @@ public class MyPacMan extends PacmanController
                         }
                     }
                 }
-                else if(minDistanceGh<=D[0] && disTonearestPp <D[4])
+                
+				if(minDistanceGh<=D[0] && disTonearestPp <D[4])
                 {
-                	//System.out.println("Situation 5 : Avoid tunnel Eat PP now");
+                    //System.out.println("Situation 5 : Avoid tunnel Eat PP now");
                     //eat pp
                     return game.getNextMoveTowardsTarget(current, closestPp, Constants.DM.PATH);
                 }
-                else if(minDistanceGh>=D[3] &&disTonearestPp >=D[7] &&disTonearestP<=D[8])
+                
+				if(minDistanceGh>=D[3] &&disTonearestPp >=D[7] &&disTonearestP<=D[8])
                 {
-                	//System.out.println("Situation 6 : Gh and pp too far Eat p first");
+                    //System.out.println("Situation 6 : Gh and pp too far Eat p first");
                     //eat n_p
                     return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
                 }
-                else if(minDistanceGh>=D[3]&&disTonearestPp <=D[7] && disTonearestP<=D[10])
+                
+				if(minDistanceGh>=D[3]&&disTonearestPp <=D[7] && disTonearestP<=D[10])
                 {
-                	//System.out.println("Situation 8: gh too far AVOID eat pp too early Eat p first");
+                    //System.out.println("Situation 8: gh too far AVOID eat pp too early Eat p first");
                     //eat n_p
                     return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
                 }
             }
-        }
-        else // no pp exist
-        {
-        	if(minEdGhost!=null) //有可食鬼
-        	{
-        		if(minDistanceEdGh<D[12])
-        		{
-        			//System.out.println("Eat Nearest Edgh");
-        			return game.getNextMoveTowardsTarget(current, game.getGhostCurrentNodeIndex(minEdGhost), Constants.DM.PATH);
-        		}
-        		else if(minDistanceEdGh>D[12] && minDistanceGh>D[1] &&minDistanceGh<=D[2] && disTonearestP<=D[6])
-        		{
-        			//System.out.println("Edgh too far Eat p first");
-        			return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
-        		}
-        	}
-        	else//沒有可食鬼
-        	{
-        		//10
-        		//問題: 沒有PP沒有可食鬼 ，但自己又死了一次，此時就沒有 minGhost 的值了*******************************
-        		//試解: 鬼在籠子裡的這段時間先隨機走
-        		if(minGhost!=null)//鬼不在籠子裡
-        		{
-        			ghostLocation_now = game.getGhostCurrentNodeIndex_new(minGhost);
-            		nghWithNp = game.getShortestPathDistance(ghostLocation_now, closestP);
-            		if(minDistanceGh<=D[0] && nghWithNp<=D[2])
-            		{
-            			//System.out.println("Situation 10 : Eat  remain p");
-            			return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
-            		}
-            		else // 躲避鬼走法
-            		{
-            			//這裡要實作鬼夾擊之走法
-            			//System.out.println("Avoiding too close ghost");
-            			return game.getNextMoveAwayFromTarget(current, ghostLocation_now, Constants.DM.PATH);
-            		}
-        		}
-        		else //鬼在籠子裡，此時沒有PP，沒有可食鬼
-        		{
-        			switch (randdir)
-        	        {
-        	        case 0:
-        	            myMove = MOVE.UP;
-        	            break;
-        	        case 1:
-        	            myMove = MOVE.RIGHT;
-        	            break;
-        	        case 2:
-        	            myMove = MOVE.DOWN;
-        	            break;
-        	        case 3:
-        	            myMove = MOVE.LEFT;
-        	            break;
-        	        case 4:
-        	            myMove = MOVE.NEUTRAL;
-        	            break;
-        	        }
-        			return myMove;
-        		}
-        		
-        	}
-        }
+		}
+		else //沒有PP
+		{
+			if(minEdGhost!=null) //有可食鬼
+            {
+                if(minDistanceEdGh<D[12])
+                {
+                    //System.out.println("Eat Nearest Edgh");
+                    return game.getNextMoveTowardsTarget(current, game.getGhostCurrentNodeIndex(minEdGhost), Constants.DM.PATH);
+                }
+				if(minGhost!=null)
+				{
+					ghostLocation_now = game.getGhostCurrentNodeIndex_new(minGhost);
+					if(minDistanceGh<=D[0]&&disTonearestP<=D[11])
+					{
+						//r7 Then avoid ghost and eat nearest pill
+						//先做 avoid 
+						return game.getNextMoveAwayFromTarget(current, ghostLocation_now, Constants.DM.PATH);
+					}
+					if(minDistanceEdGh>D[12] && minDistanceGh>D[1] &&minDistanceGh<=D[2] && disTonearestP<=D[9])
+					{
+						// r9 有兩種狀態鬼 距離適中 先吃P
+						//System.out.println("Edgh too far Eat p first");
+						return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
+					}
+				}
+            }
+            else//沒有可食鬼
+            {
+                //10
+                //問題: 沒有PP沒有可食鬼 ，但自己又死了一次，此時就沒有 minGhost 的值了*******************************
+                //試解: 鬼在籠子裡的這段時間先隨機走
+                if(minGhost!=null)//鬼不在籠子裡
+                {
+                    ghostLocation_now = game.getGhostCurrentNodeIndex_new(minGhost);
+                    nghWithNp = game.getShortestPathDistance(ghostLocation_now, closestP);
+                    if(minDistanceGh<=D[0] && nghWithNp<=D[2])
+                    {
+                        //System.out.println("Situation 10 : Eat  remain p");
+                        return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
+                    }
+                    else // 躲避鬼走法
+                    {
+                        //這裡要實作鬼夾擊之走法
+                        //System.out.println("Avoiding too close ghost");
+                        return game.getNextMoveAwayFromTarget(current, ghostLocation_now, Constants.DM.PATH);
+                    }
+                }
+                else //鬼在籠子裡，此時沒有PP，沒有可食鬼
+                {
+                    switch (randdir)
+                    {
+                    case 0:
+                        myMove = MOVE.UP;
+                        break;
+                    case 1:
+                        myMove = MOVE.RIGHT;
+                        break;
+                    case 2:
+                        myMove = MOVE.DOWN;
+                        break;
+                    case 3:
+                        myMove = MOVE.LEFT;
+                        break;
+                    case 4:
+                        myMove = MOVE.NEUTRAL;
+                        break;
+                    }
+                    return myMove;
+                }
+
+            }
+		}
+      
+		
+		
+		
+		
+		
+		//System.out.println("Not in rule");
+		return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
+        
 
 
         //dis(pac,n_gh)   - minDistanceGh
@@ -811,6 +847,7 @@ public class MyPacMan extends PacmanController
         //dis(pac,n_p)    - disTonearestP
         
         //System.out.println("=================go random=================");
+        /*
         switch (randdir)
         {
         case 0:
@@ -828,22 +865,8 @@ public class MyPacMan extends PacmanController
         case 4:
             myMove = MOVE.NEUTRAL;
             break;
-        }
-		/*
-						Problem : 
-		1.鬼夾擊之走法 -L313
-		  Situation 7 實作，不能只遠離鬼，還要去吃小藥丸，
-		2.沒有PP沒有可食鬼，此時找不到minGhost，需再加一個判斷 -L303
-		3.D2 D6 值的挑選 L190
+        }*/
 		
-		
-		*/
-        // System.out.println("MOVE : "+);
-        //System.out.println("RAND_MOVE : " + myMove);
-        //return myMove;
-        //System.out.println("Follow nearest pill");
-        return game.getNextMoveTowardsTarget(current, closestP, Constants.DM.PATH);
-        //return MOVE.LEFT;
     	
     }
 }
