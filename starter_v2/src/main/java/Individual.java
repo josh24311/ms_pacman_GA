@@ -71,7 +71,7 @@ public class Individual {
         int fitness = 0;
         double avgs = 0;
     	ExecuteGame play = new ExecuteGame();
-    	avgs = play.run(D);
+    	avgs = play.run(D,1);
     	fitness = (int)avgs;
     	this.setFitnessValue(fitness);
         return fitness;

@@ -15,11 +15,12 @@ import java.util.EnumMap;
 import java.io.*;
 
 public class ExecuteGame {
-	public double run(int[] D){
+	public double run(int[] D,int mode){
 		//GetScore  gs = new GetScore();
 		int testTrial  = 10;
 		int ParameterCount = 13;
 		double avgs = 0;
+		
 		try{
 			FileWriter fw = new FileWriter("D:\\new.txt");
 			for(int i = 0;i<ParameterCount;i++)
@@ -47,7 +48,15 @@ public class ExecuteGame {
 	    //executor.runGameTimedSpeedOptimised(new MyPacMan(), new MASController(controllers), false, true, "waituntil");
 	    //executor.runExperiment(new MyPacMan(), new MASController(controllers), testTrial, "EX", 8000);
 	    //System.out.println("D1 = "+D1+" D2 = "+D2);
-	    avgs = executor.runExperiment_new(new MyPacMan(), new MASController(controllers), testTrial, "EX", 8000);
+	    if(mode==1) //Experiment Mode
+	    {
+	    	avgs = executor.runExperiment_new(new MyPacMan(), new MASController(controllers), testTrial, "EX", 8000);
+	    }
+	    else //Testing Parameters Mode
+	    {
+	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 10);
+	    }
+	    
 	    
 	    return avgs;
 	}
