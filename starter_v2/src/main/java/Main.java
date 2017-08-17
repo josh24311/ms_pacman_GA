@@ -20,7 +20,7 @@ public class Main
 
         int ParameterCount = 13;
         int GeneLength = 7;
-        int SIZE = ParameterCount*GeneLength;
+        //int SIZE = ParameterCount*GeneLength;
         int gnow = 0;
         int bit = 0;
         int sum = 0;

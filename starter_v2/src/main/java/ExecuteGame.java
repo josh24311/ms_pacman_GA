@@ -3,7 +3,7 @@ import examples.StarterGhostComm.Inky;
 import examples.StarterGhostComm.Pinky;
 import examples.StarterGhostComm.Sue;
 import entrants.pacman.josh24311.MyPacMan;
-import entrants.pacman.josh24311.Test;
+
 
 import pacman.Executor;
 import pacman.controllers.IndividualGhostController;

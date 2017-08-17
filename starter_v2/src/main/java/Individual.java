@@ -43,19 +43,7 @@ public class Individual {
     	int sum = 0;  //累計一個parameter的值總和
     	int gnow = 0; //紀錄目前基因位置
     	int D[] = new int[ParameterCount];
-		int D1 = 0;
-		int D2 = 0;
-		int D3 = 0;
-		int D4 = 0;
-		int D5 = 0;
-		int D6 = 0;
-		int D7 = 0;
-		int D8 = 0;
-		int D9 = 0;
-		int D10 = 0;
-		int D11 = 0;
-		int D12 = 0;
-		int D13 = 0;
+		
 		for(int i = 0; i<ParameterCount; i++){
 			for(int j = 0; j<SIZE/ParameterCount; j++){
 				sum += this.genes[gnow] <<bit;
