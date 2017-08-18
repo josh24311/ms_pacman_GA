@@ -109,9 +109,10 @@ public final class Game {
     public Game(long seed, Messenger messenger) {
         this(seed, 0, messenger);
     }
-
+    /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SETTING SIGHT MODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11*/
     public Game(long seed, int initialMaze, Messenger messenger) {
-        this(seed, initialMaze, messenger, POType.LOS, 100);
+    	this(seed, initialMaze, messenger, POType.RADIUS, 200);
+        //this(seed, initialMaze, messenger, POType.LOS, 100);
     }
 
     public Game(long seed, int initialMaze, Messenger messenger, POType poType, int sightLimit) {
@@ -145,6 +146,7 @@ public final class Game {
     }
 
     public boolean isNodeObservable(int nodeIndex) {
+    	//System.out.println("isNodeObservable");
         if (!po) {
             return true;
         }
@@ -1112,8 +1114,7 @@ public final class Game {
      * @return true, if is   pill still available
      */
 public Boolean isPillStillAvailable_new(int pillIndex) {
-    	
-        
+   
         return pills.get(pillIndex);
     }
     /**
@@ -1123,8 +1124,7 @@ public Boolean isPillStillAvailable_new(int pillIndex) {
      * @return true, if is power pill still available
      */
 public Boolean isPowerPillStillAvailable_new(int powerPillIndex) {
-    	
-        
+
         return powerPills.get(powerPillIndex);
     }
 
@@ -1187,6 +1187,10 @@ public Boolean isPowerPillStillAvailable_new(int powerPillIndex) {
             return -1;
         }
         return pacman.currentNodeIndex;
+    }
+    /*0818 new*/
+    public int getPacmanCurrentNodeIndex_new(){
+    	return pacman.currentNodeIndex;
     }
 
     /**
@@ -1538,6 +1542,7 @@ public Boolean isPowerPillStillAvailable_new(int powerPillIndex) {
      * @return the shortest path distance
      */
     public int getShortestPathDistance(int fromNodeIndex, int toNodeIndex) {
+    	//System.out.println("PATH");
         if (fromNodeIndex == toNodeIndex) {
             return 0;
         } else if (fromNodeIndex < toNodeIndex) {
@@ -1576,6 +1581,8 @@ public Boolean isPowerPillStillAvailable_new(int powerPillIndex) {
      * @return the manhattan distance
      */
     public int getManhattanDistance(int fromNodeIndex, int toNodeIndex) {
+    	//System.out.println("Manh");
+    	
         return (Math.abs(currentMaze.graph[fromNodeIndex].x - currentMaze.graph[toNodeIndex].x) + Math.abs(currentMaze.graph[fromNodeIndex].y - currentMaze.graph[toNodeIndex].y));
     }
 

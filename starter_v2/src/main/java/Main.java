@@ -14,7 +14,7 @@ public class Main
     {
         final  int ELITISM_K = 5;
         final  int POP_SIZE = 40 + ELITISM_K;  // population size
-        final  int MAX_ITER = 50;             // max number of iterations
+        final  int MAX_ITER = 30;             // max number of iterations
         final  double MUTATION_RATE = 0.05;     // probability of mutation
         final  double CROSSOVER_RATE = 0.7;     // probability of crossover
 
@@ -39,19 +39,19 @@ public class Main
         mode = scanner.nextInt();
         if(mode==2)//testing mode
         {
-            D[0] = 13;
-            D[1] = 111;
-            D[2] = 73;
-            D[3] = 114;
-            D[4] = 63;
-            D[5] = 118;
-            D[6] = 104;
-            D[7] = 93;
-            D[8] = 107;
-            D[9] = 95;
-            D[10] = 0;
-            D[11] = 76;
-            D[12] = 4;
+            D[0] = 42;//35
+            D[1] = 127;//66
+            D[2] = 25;//109
+            D[3] = 23;//84
+            D[4] = 89;//70
+            D[5] = 43;//62
+            D[6] = 57;//51
+            D[7] = 65;//98
+            D[8] = 107;//126
+            D[9] = 20;//91
+            D[10] = 27;//19
+            D[11] = 7;//46
+            D[12] = 74;//4
             ExecuteGame play = new ExecuteGame();
             score = play.run(D,2);
             System.out.println("Testing Score: "+score);

@@ -3,6 +3,7 @@ import examples.StarterGhostComm.Inky;
 import examples.StarterGhostComm.Pinky;
 import examples.StarterGhostComm.Sue;
 import entrants.pacman.josh24311.MyPacMan;
+//import examples.StarterPacMan.*;
 
 
 import pacman.Executor;
@@ -54,7 +55,7 @@ public class ExecuteGame {
 	    }
 	    else //Testing Parameters Mode
 	    {
-	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 10);
+	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 20);
 	    }
 	    
 	    

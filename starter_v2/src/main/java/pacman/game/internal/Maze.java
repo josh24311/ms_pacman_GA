@@ -19,7 +19,10 @@ public final class Maze {
     public int initialPacManNodeIndex, lairNodeIndex, initialGhostNodeIndex;                //Maze-specific information
     public Node[] graph;                                                                //The actual maze, stored as a graph (set of nodes)
     public String name;                                                                    //Name of the Maze
-
+	
+	//0817 new********************************
+	public AStar_new astar_new;
+	
     /*
      * Each maze is stored as a (connected) graph: all nodes have neighbours, stored in an array of length 4. The
      * index of the array associates the direction the neighbour is located at: '[up,right,down,left]'.
@@ -34,6 +37,9 @@ public final class Maze {
         //create A* graph for shortest paths for the ghosts
         astar = new AStar();
         astar.createGraph(graph);
+		//0817 new********************************
+		astar_new = new AStar_new();
+        astar_new.createGraph(graph);
     }
 
     //Loads all the nodes from files and initialises all maze-specific information.
