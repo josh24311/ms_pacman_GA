@@ -111,7 +111,7 @@ public final class Game {
     }
     /*!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! SETTING SIGHT MODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11*/
     public Game(long seed, int initialMaze, Messenger messenger) {
-    	this(seed, initialMaze, messenger, POType.RADIUS, 200);
+    	this(seed, initialMaze, messenger, POType.RADIUS, 300);
         //this(seed, initialMaze, messenger, POType.LOS, 100);
     }
 
