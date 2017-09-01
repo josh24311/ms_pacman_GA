@@ -35,6 +35,20 @@ public class ExecuteGame {
 		}catch(IOException ex){
 			ex.printStackTrace();
 		}
+		/*0830 ambush_stat initial*/
+        try{
+			FileWriter fw2 = new FileWriter("D:\\ambush.txt");
+			fw2.write(String.valueOf(false));
+			fw2.write("\r\n");
+			fw2.close();
+			
+		}catch(IOException ex){
+			ex.printStackTrace();
+		}
+        
+        
+        
+        /*0830_end*/
 	    Executor executor = new Executor(true, true);
 
 	    EnumMap<GHOST, IndividualGhostController> controllers = new EnumMap<>(GHOST.class);
@@ -55,7 +69,7 @@ public class ExecuteGame {
 	    }
 	    else //Testing Parameters Mode
 	    {
-	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 20);
+	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 100);
 	    }
 	    
 	    
