@@ -19,7 +19,7 @@ public class ExecuteGame {
 	public double run(int[] D,int mode){
 		//GetScore  gs = new GetScore();
 		int testTrial  = 10;
-		int ParameterCount = 13;
+		int ParameterCount = 13+10;/*0913*/
 		double avgs = 0;
 		
 		try{
@@ -35,7 +35,9 @@ public class ExecuteGame {
 		}catch(IOException ex){
 			ex.printStackTrace();
 		}
+		
 		/*0830 ambush_stat initial*/
+		/*
         try{
 			FileWriter fw2 = new FileWriter("D:\\ambush.txt");
 			fw2.write(String.valueOf(false));
@@ -44,7 +46,7 @@ public class ExecuteGame {
 			
 		}catch(IOException ex){
 			ex.printStackTrace();
-		}
+		}*/
         
         
         
@@ -69,7 +71,7 @@ public class ExecuteGame {
 	    }
 	    else //Testing Parameters Mode
 	    {
-	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 100);
+	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 20);
 	    }
 	    
 	    

@@ -14,11 +14,11 @@ public class Main
     {
         final  int ELITISM_K = 5;
         final  int POP_SIZE = 40 + ELITISM_K;  // population size
-        final  int MAX_ITER = 50;             // max number of iterations
+        final  int MAX_ITER = 100;             // max number of iterations
         final  double MUTATION_RATE = 0.05;     // probability of mutation
-        final  double CROSSOVER_RATE = 0.95;     // probability of crossover
+        final  double CROSSOVER_RATE = 0.7;     // probability of crossover
 
-        int ParameterCount = 13;
+        int ParameterCount = 13+10;/*0913*/
         int GeneLength = 7;
         //int SIZE = ParameterCount*GeneLength;
         int gnow = 0;
@@ -39,19 +39,29 @@ public class Main
         mode = scanner.nextInt();
         if(mode==2)//testing mode
         {
-            D[0] = 49;//50
-            D[1] = 55;//64
-            D[2] = 113;//62
-            D[3] = 113;//6
-            D[4] = 122;//81
-            D[5] = 20;//100
-            D[6] = 51;//61
-            D[7] = 41;//68
-            D[8] = 29;//40
-            D[9] = 16;//77
-            D[10] = 19;//72
-            D[11] = 64;//0
-            D[12] = 121;//108
+            D[0] = 49;
+            D[1] = 1;
+            D[2] = 74;
+            D[3] = 25;
+            D[4] = 122;
+            D[5] = 19;
+            D[6] = 122;
+            D[7] = 58;
+            D[8] = 82;
+            D[9] = 71;
+            D[10] = 24;
+            D[11] = 35;
+            D[12] = 85;
+            D[13] = 1;
+            D[14] = 1;
+            D[15] = 1;
+            D[16] = 0;
+            D[17] = 1;
+            D[18] = 1;
+            D[19] = 1;
+            D[20] = 0;
+            D[21] = 1;
+            D[22] = 1;
             ExecuteGame play = new ExecuteGame();
             score = play.run(D,2);
             System.out.println("Testing Score: "+score);
@@ -118,7 +128,7 @@ public class Main
             Individual bestIndiv = pop.findBestIndividual();
             System.out.println("Best Score of Last GEN: "+bestIndiv.getFitnessValue());
 
-            for(int i = 0; i<ParameterCount; i++)
+            for(int i = 0; i<ParameterCount-10; i++)
             {
                 for(int j = 0; j<GeneLength; j++)
                 {
@@ -127,9 +137,16 @@ public class Main
                     gnow++;
                 }
                 bit = 0;
-                D[i] = sum;
+                D[i] = sum;//得到一個長度
                 System.out.println("D["+i+"]= "+D[i]);
                 sum = 0;
+            }
+            //列出gene[91]~gene[100]
+            for(int i = 13;i<ParameterCount;i++)
+            {
+            	D[i] = bestIndiv.getGene(gnow);
+            	gnow++;
+            	System.out.println("D["+i+"]= "+D[i]);
             }
         }
         
