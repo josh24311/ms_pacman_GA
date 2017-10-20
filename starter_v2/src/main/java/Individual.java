@@ -1,8 +1,8 @@
 import java.util.Random;
 public class Individual {
-	public static final int SIZE = 91+10;/*0913*/
-	public static final int ParameterCount = 13+10;/*0913*/
-	public static final int DisParLength = 7;
+	public static final int SIZE = 63;/*0913_91+10*/
+	public static final int ParameterCount = 9;/*0913_13+10*/
+	public static final int DisParLength = 7;/*1017*/
     private int[] genes = new int[SIZE];
 	//genes[0]~genes[100]
     private int fitnessValue;
@@ -45,7 +45,8 @@ public class Individual {
     	int gnow = 0; //紀錄目前基因位置
     	int D[] = new int[ParameterCount];
 		
-		for(int i = 0; i<ParameterCount-10; i++){
+    	//i<ParameterCount-10
+		for(int i = 0; i<ParameterCount; i++){
 			for(int j = 0; j<DisParLength; j++){
 				sum += this.genes[gnow] <<bit;
 				bit++;
@@ -55,11 +56,12 @@ public class Individual {
 			D[i] = sum;
 			sum = 0;
 		}
+		/*
 		for(int i = 13;i<ParameterCount;i++)
 		{
 			D[i] = this.genes[gnow];
 			gnow++;
-		}
+		}*/
     	
         int fitness = 0;
         double avgs = 0;

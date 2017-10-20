@@ -18,8 +18,8 @@ public class Main
         final  double MUTATION_RATE = 0.05;     // probability of mutation
         final  double CROSSOVER_RATE = 0.7;     // probability of crossover
 
-        int ParameterCount = 13+10;/*0913*/
-        int GeneLength = 7;
+        int ParameterCount = 9;/*0913_13+10,1019_9*/
+        int GeneLength = 7;/*1017*/
         //int SIZE = ParameterCount*GeneLength;
         int gnow = 0;
         int bit = 0;
@@ -39,19 +39,21 @@ public class Main
         mode = scanner.nextInt();
         if(mode==2)//testing mode
         {
-            D[0] = 49;
-            D[1] = 1;
-            D[2] = 74;
-            D[3] = 25;
-            D[4] = 122;
-            D[5] = 19;
-            D[6] = 122;
-            D[7] = 58;
-            D[8] = 82;
-            D[9] = 71;
-            D[10] = 24;
-            D[11] = 35;
-            D[12] = 85;
+            D[0] = 41;
+            D[1] = 95;
+            D[2] = 39;
+            D[3] = 65;
+            D[4] = 73;
+            D[5] = 100;
+            D[6] = 126;
+            D[7] = 57;
+            D[8] = 18;
+            //D[9] = 10;
+            //D[10] = 16;
+            //D[11] = 26;
+            //D[12] = 4;
+            
+            /*
             D[13] = 1;
             D[14] = 1;
             D[15] = 1;
@@ -62,6 +64,7 @@ public class Main
             D[20] = 0;
             D[21] = 1;
             D[22] = 1;
+            */
             ExecuteGame play = new ExecuteGame();
             score = play.run(D,2);
             System.out.println("Testing Score: "+score);
@@ -127,8 +130,9 @@ public class Main
             // best indiv
             Individual bestIndiv = pop.findBestIndividual();
             System.out.println("Best Score of Last GEN: "+bestIndiv.getFitnessValue());
-
-            for(int i = 0; i<ParameterCount-10; i++)
+            
+            //<ParameterCount-10
+            for(int i = 0; i<ParameterCount; i++)
             {
                 for(int j = 0; j<GeneLength; j++)
                 {
@@ -142,12 +146,13 @@ public class Main
                 sum = 0;
             }
             //¦C¥Xgene[91]~gene[100]
+            /*
             for(int i = 13;i<ParameterCount;i++)
             {
             	D[i] = bestIndiv.getGene(gnow);
             	gnow++;
             	System.out.println("D["+i+"]= "+D[i]);
-            }
+            }*/
         }
         
     }

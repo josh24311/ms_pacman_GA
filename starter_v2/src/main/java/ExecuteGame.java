@@ -4,7 +4,7 @@ import examples.StarterGhostComm.Pinky;
 import examples.StarterGhostComm.Sue;
 import entrants.pacman.josh24311.MyPacMan;
 //import examples.StarterPacMan.*;
-
+//import examples.StarterPacManOneJunction.*;
 
 import pacman.Executor;
 import pacman.controllers.IndividualGhostController;
@@ -19,7 +19,7 @@ public class ExecuteGame {
 	public double run(int[] D,int mode){
 		//GetScore  gs = new GetScore();
 		int testTrial  = 10;
-		int ParameterCount = 13+10;/*0913*/
+		int ParameterCount = 9;/*0913_13+10,1019_9*/
 		double avgs = 0;
 		
 		try{
@@ -71,7 +71,7 @@ public class ExecuteGame {
 	    }
 	    else //Testing Parameters Mode
 	    {
-	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 20);
+	    	avgs = executor.runGame(new MyPacMan(), new MASController(controllers), true, 80);
 	    }
 	    
 	    

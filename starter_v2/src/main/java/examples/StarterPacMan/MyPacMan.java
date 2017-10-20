@@ -39,6 +39,7 @@ public class MyPacMan extends PacmanController {
 //                        System.out.println("Evading Ghost");
                         return game.getNextMoveAwayFromTarget(current, ghostLocation, Constants.DM.PATH);
                         //回傳遠離此鬼走法，傳完FOR迴圈就結束了
+                        
                     }
                 }
             }
