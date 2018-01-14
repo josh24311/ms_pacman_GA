@@ -1,7 +1,7 @@
 import java.util.Random;
 public class Individual {
-	public static final int SIZE = 63;/*0913_91+10*/
-	public static final int ParameterCount = 9;/*0913_13+10*/
+	public static final int SIZE = 63;/*0913_91+10,1204_63*/
+	public static final int ParameterCount = 9;/*0913_13+10,1204_9*/
 	public static final int DisParLength = 7;/*1017*/
     private int[] genes = new int[SIZE];
 	//genes[0]~genes[100]

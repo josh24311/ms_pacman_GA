@@ -4,7 +4,7 @@ public class Population {
     final static int POP_SIZE = 40 + ELITISM_K;  // population size
     final static int MAX_ITER = 100;             // max number of iterations
     final static double MUTATION_RATE = 0.05;     // probability of mutation
-    final static double CROSSOVER_RATE = 0.7;     // probability of crossover
+    final static double CROSSOVER_RATE = 0.95;     // probability of crossover
 
     private static Random m_rand = new Random();  // random-number generator
     private Individual[] m_population;
@@ -77,6 +77,9 @@ public class Population {
 
         //return m_population[idxMin];      // minimization
         return m_population[idxMax];        // maximization
+    }
+    public Individual getIndividual(int i){
+    	return m_population[i];
     }
 
     public static Individual[] crossover(Individual indiv1,Individual indiv2) {

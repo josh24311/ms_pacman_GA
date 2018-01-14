@@ -49,13 +49,14 @@ public final class Maze {
         String input = scanner.nextLine();
 
         //preamble
+        //讀取地圖檔的第一行
         String[] pr = input.split("\t");
 
         this.name = pr[0];
         this.initialPacManNodeIndex = Integer.parseInt(pr[1]);
         this.lairNodeIndex = Integer.parseInt(pr[2]);
         this.initialGhostNodeIndex = Integer.parseInt(pr[3]);
-        this.graph = new Node[Integer.parseInt(pr[4])];
+        this.graph = new Node[Integer.parseInt(pr[4])];//以A為例，產生一個長度為1293的Node陣列
         this.pillIndices = new int[Integer.parseInt(pr[5])];
         this.powerPillIndices = new int[Integer.parseInt(pr[6])];
         this.junctionIndices = new int[Integer.parseInt(pr[7])];

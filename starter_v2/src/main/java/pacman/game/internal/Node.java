@@ -36,12 +36,12 @@ public final class Node {
             }
         }
 
-        numNeighbouringNodes = neighbourhood.size();
+        numNeighbouringNodes = neighbourhood.size();//node #1 for example : 2 
 
-        for (int i = 0; i < moves.length; i++) {
-            if (neighbourhood.containsKey(moves[i])) {
+        for (int i = 0; i < moves.length; i++) {//i<5
+            if (neighbourhood.containsKey(moves[i])) {// node #1 for example:i=1 & i=2
                 EnumMap<MOVE, Integer> tmp = new EnumMap<MOVE, Integer>(neighbourhood);
-                tmp.remove(moves[i]);
+                tmp.remove(moves[i]);//remove i=1,³Ñ¤U i=2
                 allNeighbourhoods.put(moves[i].opposite(), tmp);
             }
         }

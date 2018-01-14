@@ -16,6 +16,7 @@ import java.util.PriorityQueue;
  */
 public class AStar {
     private N[] graph;
+    //public N[] graph;
 
     public void createGraph(Node[] nodes) {
         graph = new N[nodes.length];
@@ -28,10 +29,10 @@ public class AStar {
         //add neighbours
         for (int i = 0; i < nodes.length; i++) {
             EnumMap<MOVE, Integer> neighbours = nodes[i].neighbourhood;
-            MOVE[] moves = MOVE.values();
+            MOVE[] moves = MOVE.values();//上右下左原
 
             for (int j = 0; j < moves.length; j++) {
-                if (neighbours.containsKey(moves[j])) {
+                if (neighbours.containsKey(moves[j])) {//node index 0 for example : j=1,2
                     graph[i].adj.add(new E(graph[neighbours.get(moves[j])], moves[j], 1));
                 }
             }
@@ -41,7 +42,7 @@ public class AStar {
     public synchronized int[] computePathsAStar(int s, int t, MOVE lastMoveMade, Game game) {
         N start = graph[s];
         N target = graph[t];
-
+        //System.out.println(graph[317].g);
         PriorityQueue<N> open = new PriorityQueue<N>();
         ArrayList<N> closed = new ArrayList<N>();
 
@@ -53,13 +54,16 @@ public class AStar {
         open.add(start);
 
         while (!open.isEmpty()) {
-            N currentNode = open.poll();
+        	//當開啟列表不為空
+            N currentNode = open.poll();//取得當前格
             closed.add(currentNode);
 
             if (currentNode.isEqual(target)) {
+            	//目標格已加入關閉列表
                 break;
             }
-
+            //System.out.println(currentNode.index);
+            
             for (E next : currentNode.adj) {
                 if (next.move != currentNode.reached.opposite()) {
                     double currentDistance = next.cost;
@@ -73,6 +77,7 @@ public class AStar {
 
                         open.add(next.node);
                     } else if (currentDistance + currentNode.g < next.node.g) {
+                    	//在開啟列表或關閉列表中且符合上述判斷
                         next.node.g = currentDistance + currentNode.g;
                         next.node.parent = currentNode;
 

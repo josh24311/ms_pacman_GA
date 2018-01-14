@@ -1251,6 +1251,11 @@ public Boolean isPowerPillStillAvailable_new(int powerPillIndex) {
         }
         return ghosts.get(ghostType).lastMoveMade;
     }
+    /*0102_ added revised version of getGhostLastMoveMade */
+    public MOVE getGhostLastMoveMade_new(GHOST ghostType) {
+        
+        return ghosts.get(ghostType).lastMoveMade;
+    }
 
     /**
      * Returns the edible time for the specified ghost.

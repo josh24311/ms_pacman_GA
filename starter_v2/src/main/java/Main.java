@@ -16,9 +16,9 @@ public class Main
         final  int POP_SIZE = 40 + ELITISM_K;  // population size
         final  int MAX_ITER = 100;             // max number of iterations
         final  double MUTATION_RATE = 0.05;     // probability of mutation
-        final  double CROSSOVER_RATE = 0.7;     // probability of crossover
+        final  double CROSSOVER_RATE = 0.95;     // probability of crossover
 
-        int ParameterCount = 9;/*0913_13+10,1019_9*/
+        int ParameterCount = 9;/*0913_13+10,1019_9,1204_9*/
         int GeneLength = 7;/*1017*/
         //int SIZE = ParameterCount*GeneLength;
         int gnow = 0;
@@ -35,23 +35,25 @@ public class Main
         // 宣告 node 類別物件
 
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Mode(1: For run experiment, 2: For parameters testing): ");
+        System.out.print("Enter Mode(1: For run experiment, 2: For parameters testing, 3: For fast get score ): ");
         mode = scanner.nextInt();
         if(mode==2)//testing mode
         {
-            D[0] = 41;
-            D[1] = 95;
-            D[2] = 39;
-            D[3] = 65;
-            D[4] = 73;
-            D[5] = 100;
-            D[6] = 126;
-            D[7] = 57;
-            D[8] = 18;
-            //D[9] = 10;
-            //D[10] = 16;
-            //D[11] = 26;
-            //D[12] = 4;
+            D[0] = 50;
+            D[1] = 26;
+            D[2] = 113;
+            D[3] = 27;
+            D[4] = 0;
+            D[5] = 58;
+            D[6] = 83;
+            D[7] = 37;
+            D[8] = 75;
+            /*
+            D[8] = 35;
+            D[9] = 127;
+            D[10] = 32;
+            D[11] = 74;
+            D[12] = 104;
             
             /*
             D[13] = 1;
@@ -145,6 +147,38 @@ public class Main
                 System.out.println("D["+i+"]= "+D[i]);
                 sum = 0;
             }
+            
+            try{
+    			FileWriter fw2 = new FileWriter("D:\\lastGen.txt");
+    			for(int k = 0;k<POP_SIZE;k++)
+    			{
+    				bestIndiv = pop.getIndividual(k);
+    				fw2.write("\r\n");
+    				fw2.write("Individual "+k+":");
+    				fw2.write("\r\n");
+    				for(int i = 0; i<ParameterCount; i++)
+    				{
+    					for(int j = 0; j<GeneLength; j++)
+    					{
+    						sum += bestIndiv.getGene(gnow) <<bit;
+    						bit++;
+    						gnow++;
+    					}
+    					bit = 0;
+    					D[i] = sum;//得到一個長度
+    					//System.out.println("D["+i+"]= "+D[i]);
+    					fw2.write(" D["+i+"]= "+D[i]+"_");
+    					sum = 0;
+    				}
+    			}
+    			
+    			//fw2.write(String.valueOf(ambush_stat));
+    			//fw2.write("\r\n");
+    			fw2.close();
+    			
+    		}catch(IOException ex){
+    			ex.printStackTrace();
+    		}
             //列出gene[91]~gene[100]
             /*
             for(int i = 13;i<ParameterCount;i++)
@@ -153,6 +187,39 @@ public class Main
             	gnow++;
             	System.out.println("D["+i+"]= "+D[i]);
             }*/
+        }
+        else
+        { //mode ==3
+        	 D[0] = 40;
+             D[1] = 94;
+             D[2] = 112;
+             D[3] = 43;
+             D[4] = 49;
+             D[5] = 110;
+             D[6] = 117;
+             D[7] = 11;
+             /*
+             D[8] = 35;
+             D[9] = 127;
+             D[10] = 32;
+             D[11] = 74;
+             D[12] = 104;
+             
+             /*
+             D[13] = 1;
+             D[14] = 1;
+             D[15] = 1;
+             D[16] = 0;
+             D[17] = 1;
+             D[18] = 1;
+             D[19] = 1;
+             D[20] = 0;
+             D[21] = 1;
+             D[22] = 1;
+             */
+             ExecuteGame play = new ExecuteGame();
+             score = play.run(D,3);
+             System.out.println("Testing Score: "+score);
         }
         
     }
